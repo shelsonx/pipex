@@ -5,7 +5,7 @@
 
 int main(void)
 {
-	char	*argv[] = {"/bin/ls", "-l", NULL};
+	char	*argv[] = {"/bin/ls", "-la", NULL};
 	pid_t	pid;
 
 	pid = fork();
