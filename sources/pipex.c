@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/19 22:50:47 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:58:10 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	main(int argc, char **argv)
 		close(fd[0]);
 		execve(second_command[0], second_command, NULL);
 	}
+	ft_free_tab(first_command);
+	ft_free_tab(second_command);
 	close(fd[0]);
 	close(fd[1]);
 	close(infile_fd);
