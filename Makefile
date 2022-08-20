@@ -1,4 +1,4 @@
-SRCS_FILES			= pipex.c command.c
+SRCS_FILES			= pipex.c command.c path.c
 
 SRCS_FILES_BONUS	= # add
 

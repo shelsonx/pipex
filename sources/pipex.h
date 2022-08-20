@@ -9,4 +9,9 @@
 //COMMAND
 char	**create_command(char *str);
 char	*join_path_command(char *path, char *command);
+
+//PATH
+char	*get_env_path(char **envp);
+char	**get_paths_cmds(char *env_path);
+void	get_path(char **envp);
 #endif
