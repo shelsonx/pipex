@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 14:22:52 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:49:26 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 		perror("pipex");
 		return (-1);
 	}
-		return (1);
 	if (pipe(fd) < 0)
 	{
 		return (2);
