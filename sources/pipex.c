@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 03:17:36 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/20 03:44:09 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int	main(int argc, char **argv)
 	first_command = create_command(argv[2]);
 	second_command = create_command(argv[3]);
 	if (infile_fd < 0 || outfile_fd < 0)
+	{
+		perror("pipex");
+		return (-1);
+	}
 		return (1);
 	if (pipe(fd) < 0)
 	{

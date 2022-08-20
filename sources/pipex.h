@@ -3,6 +3,7 @@
 
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <stdio.h>
 # include "../libs/libft/libft.h"
 
 //COMMAND
