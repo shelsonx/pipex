@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 13:45:47 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/20 15:15:12 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	**create_command(char *str)
 char	*join_path_command(char *path, char *command)
 {
 	char	*full_path;
+	char	*path_tmp;
 
-	full_path = ft_strjoin(path, command);
+	path_tmp = ft_strjoin(path, "/");
+	full_path = ft_strjoin(path_tmp, command);
+	free(path_tmp);
 	return (full_path);
 }

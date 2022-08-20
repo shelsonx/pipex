@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 14:49:26 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/20 15:12:42 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		char *path_1 = join_path_command("/bin/", first_command[0]);
+		char *path_1 = join_path_command("/bin", first_command[0]);
 		execve(path_1, first_command, NULL);
 		free(path_1);
 	}
@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		char *path_2 = join_path_command("/bin/", second_command[0]);
+		char *path_2 = join_path_command("/bin", second_command[0]);
 		execve(path_2, second_command, NULL);
 		free(path_2);
 	}
