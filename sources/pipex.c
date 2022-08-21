@@ -6,13 +6,13 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 15:12:42 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:33:09 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int 	fd[2];
 	int		infile_fd;
@@ -45,9 +45,10 @@ int	main(int argc, char **argv)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		char *path_1 = join_path_command("/bin", first_command[0]);
-		execve(path_1, first_command, NULL);
-		free(path_1);
+		char *first_exec_cmd = get_exec_command(first_command[0], envp);
+		if (first_exec_cmd)
+			execve(first_exec_cmd, first_command, NULL);
+		free(first_exec_cmd);
 	}
 	second_pid = fork();
 	if (second_pid < 0)
@@ -59,9 +60,10 @@ int	main(int argc, char **argv)
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[1]);
 		close(fd[0]);
-		char *path_2 = join_path_command("/bin", second_command[0]);
-		execve(path_2, second_command, NULL);
-		free(path_2);
+		char *second_exec_cmd = get_exec_command(second_command[0], envp);
+		if (second_exec_cmd)
+			execve(second_exec_cmd, second_command, NULL);
+		free(second_exec_cmd);
 	}
 	ft_free_tab(first_command);
 	ft_free_tab(second_command);
