@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 07:36:58 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 07:43:55 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,15 @@ int	main(int argc, char **argv, char **envp)
 	data_first_cmd.exec_command = get_exec_command(first_command[0], envp);
 	first_pid = create_child_process(execute_command, data_first_cmd);
 	
-	
-
-	/* second_pid = fork();
-	if (second_pid < 0)
-		return (4);
-	if (second_pid == 0)
-	{
-		dup2(outfile_fd, STDOUT_FILENO);
-		close(outfile_fd);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[1]);
-		close(fd[0]);
-		char *second_exec_cmd = get_exec_command(second_command[0], envp);
-		if (second_exec_cmd)
-			execve(second_exec_cmd, second_command, NULL);
-		free(second_exec_cmd);
-	} */
-	
+	t_data data_second_cmd;
+	data_second_cmd.file_fd = outfile_fd;
+	data_second_cmd.pipe_read_fd = fd[1];
+	data_second_cmd.pipe_write_fd = fd[0];
+	data_second_cmd.first_std = STDOUT_FILENO ;
+	data_second_cmd.second_std = STDIN_FILENO;
+	data_second_cmd.args = second_command;
+	data_second_cmd.exec_command = get_exec_command(second_command[0], envp);
+	second_pid = create_child_process(execute_command, data_second_cmd);
 	
 	ft_free_tab(first_command);
 	ft_free_tab(second_command);
