@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 07:43:55 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:45:03 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ int	main(int argc, char **argv, char **envp)
 
 	t_data data_first_cmd;
 	data_first_cmd.file_fd = infile_fd;
-	data_first_cmd.pipe_read_fd = fd[0];
-	data_first_cmd.pipe_write_fd = fd[1];
-	data_first_cmd.first_std = STDIN_FILENO;
-	data_first_cmd.second_std = STDOUT_FILENO;
+	data_first_cmd.first_redirect_pipe = fd[0];
+	data_first_cmd.second_redirect_pipe = fd[1];
+	data_first_cmd.first_redirect_std = STDIN_FILENO;
+	data_first_cmd.second_redirect_std = STDOUT_FILENO;
 	data_first_cmd.args = first_command;
 	data_first_cmd.exec_command = get_exec_command(first_command[0], envp);
 	first_pid = create_child_process(execute_command, data_first_cmd);
 	
 	t_data data_second_cmd;
 	data_second_cmd.file_fd = outfile_fd;
-	data_second_cmd.pipe_read_fd = fd[1];
-	data_second_cmd.pipe_write_fd = fd[0];
-	data_second_cmd.first_std = STDOUT_FILENO ;
-	data_second_cmd.second_std = STDIN_FILENO;
+	data_second_cmd.first_redirect_pipe = fd[1];
+	data_second_cmd.second_redirect_pipe = fd[0];
+	data_second_cmd.first_redirect_std = STDOUT_FILENO ;
+	data_second_cmd.second_redirect_std = STDIN_FILENO;
 	data_second_cmd.args = second_command;
 	data_second_cmd.exec_command = get_exec_command(second_command[0], envp);
 	second_pid = create_child_process(execute_command, data_second_cmd);

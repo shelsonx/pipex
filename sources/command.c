@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 07:31:25 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:45:38 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ char	*get_exec_command(char *command, char **envp)
 
 void	execute_command(t_data data)
 {
-	dup2(data.file_fd, data.first_std);
+	dup2(data.file_fd, data.first_redirect_std);
 	close(data.file_fd);
-	dup2(data.pipe_write_fd, data.second_std);
-	close(data.pipe_read_fd);
-	close(data.pipe_write_fd);
+	dup2(data.second_redirect_pipe, data.second_redirect_std);
+	close(data.first_redirect_pipe);
+	close(data.second_redirect_pipe);
 	if (data.exec_command)
 		execve(data.exec_command, data.args, NULL);
 	free(data.exec_command);

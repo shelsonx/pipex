@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 07:35:51 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:44:31 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 typedef struct s_data
 {
 	int		file_fd;
-	int		pipe_read_fd;
-	int		pipe_write_fd;
-	int		first_std;
-	int		second_std;
+	int		first_redirect_pipe;
+	int		second_redirect_pipe;
+	int		first_redirect_std;
+	int		second_redirect_std;
 	char	*exec_command;
 	char	**args;
 }	t_data;
