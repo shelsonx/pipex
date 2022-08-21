@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 04:30:44 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 07:31:25 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,16 @@ char	*get_exec_command(char *command, char **envp)
 	}
 	ft_free_tab(paths);
 	return (NULL);
+}
+
+void	execute_command(t_data data)
+{
+	dup2(data.file_fd, data.first_std);
+	close(data.file_fd);
+	dup2(data.pipe_write_fd, data.second_std);
+	close(data.pipe_read_fd);
+	close(data.pipe_write_fd);
+	if (data.exec_command)
+		execve(data.exec_command, data.args, NULL);
+	free(data.exec_command);
 }
