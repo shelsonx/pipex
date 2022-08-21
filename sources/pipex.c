@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 05:33:09 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 07:36:58 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,20 @@ int	main(int argc, char **argv, char **envp)
 	{
 		return (2);
 	}
-	first_pid = fork();
-	if (first_pid < 0)
-		return (3);
-	if (first_pid == 0)
-	{
-		dup2(infile_fd, STDIN_FILENO);
-		close(infile_fd);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		char *first_exec_cmd = get_exec_command(first_command[0], envp);
-		if (first_exec_cmd)
-			execve(first_exec_cmd, first_command, NULL);
-		free(first_exec_cmd);
-	}
-	second_pid = fork();
+
+	t_data data_first_cmd;
+	data_first_cmd.file_fd = infile_fd;
+	data_first_cmd.pipe_read_fd = fd[0];
+	data_first_cmd.pipe_write_fd = fd[1];
+	data_first_cmd.first_std = STDIN_FILENO;
+	data_first_cmd.second_std = STDOUT_FILENO;
+	data_first_cmd.args = first_command;
+	data_first_cmd.exec_command = get_exec_command(first_command[0], envp);
+	first_pid = create_child_process(execute_command, data_first_cmd);
+	
+	
+
+	/* second_pid = fork();
 	if (second_pid < 0)
 		return (4);
 	if (second_pid == 0)
@@ -64,7 +62,9 @@ int	main(int argc, char **argv, char **envp)
 		if (second_exec_cmd)
 			execve(second_exec_cmd, second_command, NULL);
 		free(second_exec_cmd);
-	}
+	} */
+	
+	
 	ft_free_tab(first_command);
 	ft_free_tab(second_command);
 	close(fd[0]);
