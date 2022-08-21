@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 04:19:11 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 05:36:00 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 04:04:49 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,32 @@ char	**get_paths_cmds(char *env_path)
 
 	sub_path = ft_substr(env_path, 5, ft_strlen(env_path));
 	paths = ft_split(sub_path, ':');
+	free(sub_path);
 	return (paths);
 }
 
-void	get_path(char **envp)
+char	*get_exec_command(char *command, char **envp)
 {
-	char	**dirs;
-	char 	*env_path = get_env_path(envp);
-	
-	dirs =  get_paths_cmds(env_path);
+	char	*exec_command;
+	char	**paths;
+	char	*env_path;
+	int		i;
 
-	int i = 0;
-	while (dirs[i])
+	env_path = get_env_path(envp);
+	paths = get_paths_cmds(env_path);
+	i = 0;
+	while (paths[i])
 	{
-		ft_printf("%s\n", dirs[i]);
+		exec_command = join_path_command(paths[i], command);
+		if (access(exec_command, X_OK) == 0)
+		{
+			ft_free_tab(paths);
+			return (exec_command);
+		}
+		free(exec_command);
+		exec_command = NULL;
 		i++;
 	}
+	ft_free_tab(paths);
+	return (NULL);
 }

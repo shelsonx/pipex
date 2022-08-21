@@ -24,6 +24,20 @@ int main(int argc, char **argv, char **envp)
 	}
 	ft_free_tab(command); */
 
-	//get_path(envp);
+	/* char	*exec_cmd;
+	char	**command;
+
+	command = create_command("echo");
+	exec_cmd = get_exec_command(command[0], envp);
+	ft_printf("%s\n", exec_cmd); */
+	char *env_path = get_env_path(envp);
+	char **paths = get_paths_cmds(env_path);
+	
+	int i = 0;
+	while (paths[i])
+	{
+		ft_printf("%s\n", paths[i]);
+		i++;
+	}
 
 }
