@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/20 15:15:12 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/21 04:30:44 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,30 @@ char	*join_path_command(char *path, char *command)
 	full_path = ft_strjoin(path_tmp, command);
 	free(path_tmp);
 	return (full_path);
+}
+
+char	*get_exec_command(char *command, char **envp)
+{
+	char	*exec_command;
+	char	**paths;
+	char	*env_path;
+	int		i;
+
+	env_path = get_env_path(envp);
+	paths = get_paths_cmds(env_path);
+	i = 0;
+	while (paths[i])
+	{
+		exec_command = join_path_command(paths[i], command);
+		if (access(exec_command, X_OK) == 0)
+		{
+			ft_free_tab(paths);
+			return (exec_command);
+		}
+		free(exec_command);
+		exec_command = NULL;
+		i++;
+	}
+	ft_free_tab(paths);
+	return (NULL);
 }
