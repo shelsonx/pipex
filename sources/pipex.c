@@ -6,13 +6,13 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 13:36:06 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:33:05 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	pipex(int argc, char **argv, char **envp)
 {
 	int		fd[2];
 	pid_t	first_pid;
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	if (pipe(fd) < 0)
 	{
 		perror("pipex");
-		return (-1);
+		exit(1);
 	}
 	data_first_cmd = get_data_first_cmd(argv, envp, fd);
 	data_first_cmd.exec_command = get_exec_command

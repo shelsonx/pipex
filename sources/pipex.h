@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 13:31:32 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:29:27 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int *fd);
 
 //FINISH DATA
 void	finish_data(t_data first_data, t_data last_data, int *fd);
+
+//PIPEX
+void	pipex(int argc, char **argv, char **envp);
 
 #endif

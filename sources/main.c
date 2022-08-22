@@ -1,43 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 14:27:11 by sjhony-x          #+#    #+#             */
+/*   Updated: 2022/08/22 14:34:33 by sjhony-x         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	/* char **command;
-	command = ft_split(argv[argc - 1], ' ');
-	int x;
-	while (command[x])
+	if (argc != 5)
 	{
-		ft_printf("%s\n", command[x]);
-		x++;
+		ft_printf("Invalid arguments!\n");
+		exit(1);
 	}
-	command[ft_len_rows_tab(command)] = NULL;
-	ft_printf("rows= %d\n", ft_len_rows_tab(command)); */
-	
-	
-	/* char	**command;
-	int i = 0;
-	command = create_command("tr D d");
-	while (command[i])
+	else
 	{
-		ft_printf("%s\n", command[i]);
-		i++;
+		pipex(argc, argv, envp);
 	}
-	ft_free_tab(command); */
-
-	/* char	*exec_cmd;
-	char	**command;
-
-	command = create_command("echo");
-	exec_cmd = get_exec_command(command[0], envp);
-	ft_printf("%s\n", exec_cmd); */
-	char *env_path = get_env_path(envp);
-	char **paths = get_paths_cmds(env_path);
-	
-	int i = 0;
-	while (paths[i])
-	{
-		ft_printf("%s\n", paths[i]);
-		i++;
-	}
-
+	return (0);
 }
