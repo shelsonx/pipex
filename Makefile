@@ -1,4 +1,4 @@
-SRCS_FILES			= pipex.c command.c path.c child_process.c
+SRCS_FILES			= pipex.c command.c path.c child_process.c init_data.c
 
 SRCS_FILES_BONUS	= # add
 
