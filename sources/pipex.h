@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 14:29:27 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:29:16 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <sys/wait.h>
 # include <stdio.h>
 # include "../libs/libft/libft.h"
+
+# define FALSE 0
+# define TRUE 1
 
 typedef struct s_data
 {
@@ -52,5 +55,8 @@ void	finish_data(t_data first_data, t_data last_data, int *fd);
 
 //PIPEX
 void	pipex(int argc, char **argv, char **envp);
+
+//VALIDATION
+void	validate_command(int argc, char **argv, char **envp);
 
 #endif
