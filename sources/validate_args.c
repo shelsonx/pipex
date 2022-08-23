@@ -2,24 +2,24 @@
 
 #include "pipex.h"
 
-void	validate_empty_args(char *command)
+void	validate_empty_args(char *arg)
 {
 	int		i;
 	size_t	count_space;
 
-    if (command[0] == '\0')
+    if (arg[0] == '\0')
         exit(0);
 	i = 0;
 	count_space = 0;
-	while (command[i])
+	while (arg[i])
 	{
-		if (command[i] == ' ')
+		if (arg[i] == ' ')
 			count_space++;
 		i++;
 	}
-	if (count_space == ft_strlen(command))
+	if (count_space == ft_strlen(arg))
 	{
-		ft_printf("pipex: %s: command not found\n", command);
+		ft_printf("pipex: %s: command not found\n", arg);
 		exit(0);
 	}
 }
