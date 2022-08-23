@@ -44,6 +44,8 @@ void	valid_last_command(int argc, char **argv, char **envp)
 
 void	validate_command(int argc, char **argv, char **envp)
 {
+	validate_empty_args(argv[2]);
+	validate_empty_args(argv[argc -2]);
 	valid_first_command(argv, envp);
 	valid_last_command(argc, argv, envp);
 }

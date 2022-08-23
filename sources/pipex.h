@@ -56,7 +56,10 @@ void	finish_data(t_data first_data, t_data last_data, int *fd);
 //PIPEX
 void	pipex(int argc, char **argv, char **envp);
 
-//VALIDATION
+//VALIDATE COMMAND
 void	validate_command(int argc, char **argv, char **envp);
+
+//VALIDATE ARGS
+void	validate_empty_args(char *command);
 
 #endif
