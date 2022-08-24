@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 15:14:46 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:08:24 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_data	get_data_first_cmd(char **argv, char **envp, int *fd)
 		msg = ft_strjoin("pipex: ", argv[1]);
 		perror(msg);
 		free(msg);
-		exit(0);
 	}
 	data.first_redirect_pipe = fd[0];
 	data.second_redirect_pipe = fd[1];
@@ -45,7 +44,6 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int *fd)
 		msg = ft_strjoin("pipex: ", argv[argc -1]);
 		perror(msg);
 		free(msg);
-		exit(0);
 	}
 	data.first_redirect_pipe = fd[1];
 	data.second_redirect_pipe = fd[0];

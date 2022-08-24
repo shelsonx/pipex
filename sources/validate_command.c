@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 16:34:59 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:39:29 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	valid_command(char **command, char **envp)
 		ft_printf("pipex: %s: command not found\n", command[0]);
 		free(exec_command);
 		ft_free_tab(command);
-		exit(0);
 	}
 }
 

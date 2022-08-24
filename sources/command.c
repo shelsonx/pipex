@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/21 17:45:38 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:25:38 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,47 @@
 char	**create_command(char *str)
 {
 	char	**command;
-
+	char 	*tmp;
+	char	*set;
+	
+	int x = 0;
+	while (str[x])
+	{
+		if (str[x] == 39 && str[x+1] == 32)
+		{
+			str[x] = 32;
+			str[x+1] = 42;
+		}
+		else if (str[x] == 39 && str[x-1] == 32)
+		{
+			str[x] = 32;
+			str[x-1] = 42;
+		}
+		x++;
+	}
 	command = ft_split(str, ' ');
+
+	int i = 0;
+	int y;
+	while (command[i])
+	{
+		y = 0;
+		while (command[i][y])
+		{
+			if (command[i][y] == 42)
+				command[i][y] = 32;
+			y++;
+		}
+		set = " ";
+		if (i != 0)
+			set = "\'";
+		tmp = ft_strdup(command[i]);
+		free(command[i]);
+		command[i] = ft_strtrim(tmp, set);
+		free(tmp);
+		i++;
+	}
+	
 	return (command);
 }
 
