@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/23 14:42:02 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:07:06 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ void	pipex(int argc, char **argv, char **envp)
 	{
 		finish_data(data_first_cmd, data_last_cmd, fd);
 		exit(1);
+	}
+
+	validate_command(argc, argv);
+	if (!valid_first_command(argv, envp) && valid_last_command(argc, argv, envp))
+	{
+		finish_data(data_first_cmd, data_last_cmd, fd);
+		exit(0);
+	}
+	else if (!valid_first_command(argv, envp))
+	{
+		finish_data(data_first_cmd, data_last_cmd, fd);
+		exit(127);
+	}
+	else if (!valid_last_command(argc, argv, envp))
+	{
+		finish_data(data_first_cmd, data_last_cmd, fd);
+		exit(127);
 	}
 	
 	first_pid = create_child_process(execute_command, data_first_cmd);

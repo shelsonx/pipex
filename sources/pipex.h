@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/22 16:29:16 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:31:31 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ void	finish_data(t_data first_data, t_data last_data, int *fd);
 void	pipex(int argc, char **argv, char **envp);
 
 //VALIDATE COMMAND
-void	validate_command(int argc, char **argv, char **envp);
+void	validate_command(int argc, char **argv);
+char	*valid_first_command(char **argv, char **envp);
+char	*valid_last_command(int argc, char **argv, char **envp);
 
 //VALIDATE ARGS
 void	validate_empty_args(char *command);
+
 
 #endif
