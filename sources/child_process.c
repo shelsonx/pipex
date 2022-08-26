@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 05:41:02 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/24 19:20:15 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/26 21:28:29 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ pid_t	create_child_process(void (*func)(t_data), t_data data)
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("pipex");
-		return (-1);
+		error(ECHILD);
+		exit(EXIT_FAILURE);
 	}
 	if (pid == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/24 19:31:31 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/26 21:27:03 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include <stdio.h>
+# include <string.h>
 # include "../libs/libft/libft.h"
-
-# define FALSE 0
-# define TRUE 1
 
 typedef struct s_data
 {
@@ -54,7 +53,7 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int *fd);
 void	finish_data(t_data first_data, t_data last_data, int *fd);
 
 //PIPEX
-void	pipex(int argc, char **argv, char **envp);
+int		pipex(int argc, char **argv, char **envp);
 
 //VALIDATE COMMAND
 void	validate_command(int argc, char **argv);
@@ -63,6 +62,9 @@ char	*valid_last_command(int argc, char **argv, char **envp);
 
 //VALIDATE ARGS
 void	validate_empty_args(char *command);
+
+//ERROR
+void	error(int error_num);
 
 
 #endif
