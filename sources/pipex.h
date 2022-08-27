@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 15:31:31 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 19:47:42 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../libs/libft/libft.h"
 
 # define COMMAND_NOT_FOUND 127
+# define STDERR 2
 
 typedef struct s_data
 {
@@ -74,9 +75,6 @@ char	*valid_last_command(int argc, char **argv, char **envp);
 
 //VALIDATE ARGS
 void	validate_empty_args(char *command);
-
-//ERROR
-void	error(int error_num);
 
 //PARSER
 void	parser_arg(char *arg);

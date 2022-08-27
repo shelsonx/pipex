@@ -6,11 +6,23 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 16:32:07 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 19:52:20 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	error_command_msg(char **command)
+{
+	char	*msg;
+	char	*tmp;
+
+	tmp = ft_strjoin("pipex: ", command[0]);
+	msg = ft_strjoin(tmp, ": command not found\n");
+	write(STDERR, msg, ft_strlen(msg));
+	free(tmp);
+	free(msg);
+}
 
 char	*valid_command(char **command, char **envp)
 {
@@ -19,7 +31,7 @@ char	*valid_command(char **command, char **envp)
 	exec_command = get_exec_command(command[0], envp);
 	if (!exec_command)
 	{
-		ft_printf("pipex: %s: command not found\n", command[0]);
+		error_command_msg(command);
 		free(exec_command);
 		ft_free_tab(command);
 	}
