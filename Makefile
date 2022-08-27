@@ -1,5 +1,6 @@
 SRCS_FILES			= 	pipex.c command.c path.c child_process.c init_data.c \
-						pipex_utils.c main.c validate_command.c validate_args.c
+						pipex_utils.c main.c validate_command.c validate_args.c \
+						parser.c
 
 SRCS_FILES_BONUS	= # add
 

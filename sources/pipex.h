@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/26 21:27:03 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 03:30:17 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ void	validate_empty_args(char *command);
 //ERROR
 void	error(int error_num);
 
+//PARSER
+void	parser_arg(char *arg);
+void	parser_command(char **command);
 
 #endif
