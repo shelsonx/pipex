@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 14:53:15 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 15:31:31 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,12 @@ void	validate_fd_files(t_data first_data, t_data last_data,
 //VALIDATE
 void	validate(
 			int argc, char **argv, char **envp, t_children_data children_data);
+
+//EXECUTE CHILDREN PROCCESS
+void	exec_children_process(t_children_data children_data);
+
+//LOAD DATA
+void	load_data(
+			int argc, char **argv, char **envp, t_children_data *children_data);
 
 #endif
