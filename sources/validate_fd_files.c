@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 03:48:45 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 04:14:24 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 14:55:06 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	validate_fd_files(
 	{
 		finish_data(first_data, last_data, pipe_fd);
 		if (!access(argv[1], F_OK))
-			exit(0);
+			exit(EXIT_SUCCESS);
 		else
-			exit(1);
+			exit(EXIT_FAILURE);
 	}
 	if (last_data.file_fd < 0)
 	{
 		finish_data(first_data, last_data, pipe_fd);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }

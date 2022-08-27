@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 05:27:14 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 14:53:15 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <string.h>
 # include "../libs/libft/libft.h"
+
+# define COMMAND_NOT_FOUND 127
 
 typedef struct s_data
 {
