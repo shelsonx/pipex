@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 14:53:22 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 16:32:07 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,19 @@ char	*valid_last_command(int argc, char **argv, char **envp)
 void	validate_command(
 	int argc, char **argv, char **envp, t_children_data children_data)
 {
-	if (!valid_first_command(argv, envp)
-		&& valid_last_command(argc, argv, envp))
+	char	*first_command;
+	char	*last_command;
+
+	first_command = valid_first_command(argv, envp);
+	last_command = valid_last_command(argc, argv, envp);
+	if (!first_command && last_command)
 	{
 		create_child_process(execute_command, children_data.last_data);
 		finish_data(children_data.first_data, children_data.last_data,
 			children_data.pipe_fd);
 		exit(EXIT_SUCCESS);
 	}
-	if (!valid_last_command(argc, argv, envp))
+	if (!last_command)
 	{
 		finish_data(children_data.first_data, children_data.last_data,
 			children_data.pipe_fd);
