@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/26 21:17:23 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 05:12:12 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*valid_first_command(char **argv, char **envp)
 
 	first_command = create_command(argv[2]);
 	return (valid_command(first_command, envp));
-	
 }
 
 char	*valid_last_command(int argc, char **argv, char **envp)
@@ -43,8 +42,21 @@ char	*valid_last_command(int argc, char **argv, char **envp)
 	return (valid_command(last_command, envp));
 }
 
-void	validate_command(int argc, char **argv)
+void	validate_command(
+	int argc, char **argv, char **envp, t_children_data children_data)
 {
-	validate_empty_args(argv[2]);
-	validate_empty_args(argv[argc -2]);
+	if (!valid_first_command(argv, envp)
+		&& valid_last_command(argc, argv, envp))
+	{
+		create_child_process(execute_command, children_data.last_data);
+		finish_data(children_data.first_data, children_data.last_data,
+			children_data.pipe_fd);
+		exit(0);
+	}
+	if (!valid_last_command(argc, argv, envp))
+	{
+		finish_data(children_data.first_data, children_data.last_data,
+			children_data.pipe_fd);
+		exit(127);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 03:30:17 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/08/27 05:27:14 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef struct s_data
 	char	*exec_command;
 	char	**args;
 }	t_data;
+
+typedef struct s_children_data
+{
+	t_data	first_data;
+	t_data	last_data;
+	pid_t	first_pid;
+	pid_t	last_pid;
+	int		pipe_fd[2];
+}	t_children_data;
 
 //COMMAND
 char	**create_command(char *str);
@@ -56,7 +65,8 @@ void	finish_data(t_data first_data, t_data last_data, int *fd);
 int		pipex(int argc, char **argv, char **envp);
 
 //VALIDATE COMMAND
-void	validate_command(int argc, char **argv);
+void	validate_command(int argc, char **argv, char **envp,
+			t_children_data children_data);
 char	*valid_first_command(char **argv, char **envp);
 char	*valid_last_command(int argc, char **argv, char **envp);
 
@@ -69,5 +79,13 @@ void	error(int error_num);
 //PARSER
 void	parser_arg(char *arg);
 void	parser_command(char **command);
+
+//VALIDATE FDs FILES
+void	validate_fd_files(t_data first_data, t_data last_data,
+			char **argv, int *pipe_fd);
+
+//VALIDATE
+void	validate(
+			int argc, char **argv, char **envp, t_children_data children_data);
 
 #endif
