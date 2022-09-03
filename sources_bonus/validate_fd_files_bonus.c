@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_fd_files.c                                :+:      :+:    :+:   */
+/*   validate_fd_files_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 03:48:45 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 14:55:06 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:33:03 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	validate_fd_files(
 	t_data first_data, t_data last_data, char **argv, int *pipe_fd)
