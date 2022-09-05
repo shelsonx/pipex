@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 03:48:45 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/03 21:33:03 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:04:53 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	validate_fd_files(
 	t_data first_data, t_data last_data, char **argv, int *pipe_fd)
 {
-	if (first_data.file_fd < 0)
+	if (first_data.infile < 0)
 	{
 		finish_data(first_data, last_data, pipe_fd);
 		if (!access(argv[1], F_OK))
@@ -23,7 +23,7 @@ void	validate_fd_files(
 		else
 			exit(EXIT_FAILURE);
 	}
-	if (last_data.file_fd < 0)
+	if (last_data.outfile < 0)
 	{
 		finish_data(first_data, last_data, pipe_fd);
 		exit(EXIT_FAILURE);

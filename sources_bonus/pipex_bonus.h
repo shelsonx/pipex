@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/08/27 19:47:42 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:53:42 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@
 
 typedef struct s_data
 {
-	int		file_fd;
+	int		fd_in;
+	int		fd_out;
+	int		infile;
+	int		outfile;
 	int		first_redirect_pipe;
 	int		second_redirect_pipe;
 	int		first_redirect_std;
