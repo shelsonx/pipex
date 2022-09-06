@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/03 21:32:56 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:04:49 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ void	validate_command(
 	{
 		create_child_process(execute_command, children_data.last_data);
 		finish_data(children_data.first_data, children_data.last_data,
-			children_data.pipe_fd);
+			children_data.pipe_fd[0]);
 		exit(EXIT_SUCCESS);
 	}
 	if (!last_command)
 	{
 		finish_data(children_data.first_data, children_data.last_data,
-			children_data.pipe_fd);
+			children_data.pipe_fd[0]);
 		exit(COMMAND_NOT_FOUND);
 	}
 }

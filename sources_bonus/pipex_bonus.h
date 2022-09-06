@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/05 19:53:42 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:53:35 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ typedef struct s_data
 	int		fd_out;
 	int		infile;
 	int		outfile;
-	int		first_redirect_pipe;
-	int		second_redirect_pipe;
-	int		first_redirect_std;
-	int		second_redirect_std;
+	int		second_pipe;
 	char	*exec_command;
 	char	**args;
 }	t_data;
@@ -43,7 +40,7 @@ typedef struct s_children_data
 	t_data	last_data;
 	pid_t	first_pid;
 	pid_t	last_pid;
-	int		pipe_fd[2];
+	int		**pipe_fd;
 }	t_children_data;
 
 //COMMAND
@@ -61,8 +58,8 @@ void	get_path(char **envp);
 pid_t	create_child_process(void (*func)(t_data), t_data data);
 
 //INIT_DATA
-t_data	get_data_first_cmd(char **argv, char **envp, int *fd);
-t_data	get_data_last_cmd(int argc, char **argv, char **envp, int *fd);
+t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
+t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd);
 
 //FINISH DATA
 void	finish_data(t_data first_data, t_data last_data, int *fd);

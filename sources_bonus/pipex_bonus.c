@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/05 19:41:08 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:03:09 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ int	pipex(int argc, char **argv, char **envp)
 {
 	t_children_data	children_data;
 
-	if (pipe(children_data.pipe_fd) < 0)
+	children_data.pipe_fd = (int **) malloc(sizeof(int *));
+	children_data.pipe_fd[0] = (int *) malloc(sizeof(int) * 2);
+	
+	if (pipe(children_data.pipe_fd[0]) < 0)
 	{
 		perror("pipex");
 		exit(EXIT_FAILURE);
-	}
+	}	
 	load_data(argc, argv, envp, &children_data);
 	validate(argc, argv, envp, children_data);
 	exec_children_process(children_data);

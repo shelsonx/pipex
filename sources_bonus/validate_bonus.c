@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 05:22:47 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/03 21:32:44 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:05:21 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	validate(
 	validate_empty_args(argv[2]);
 	validate_empty_args(argv[argc -2]);
 	validate_fd_files (children_data.first_data, children_data.last_data,
-		argv, children_data.pipe_fd);
+		argv, children_data.pipe_fd[0]);
 	validate_command(argc, argv, envp, children_data);
 }
