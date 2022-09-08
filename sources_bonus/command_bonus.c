@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/06 13:05:15 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:06:47 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,26 @@ char	*get_exec_command(char *command, char **envp)
 	return (NULL);
 }
 
+void	close_fds(int **fds)
+{
+	int	i;
+
+	i = 0;
+	while (fds[i])
+	{
+		close(fds[i][0]);
+		close(fds[i][1]);
+		i++;
+	}
+}
+
 void	execute_command(t_data data)
 {
 	dup2(data.fd_in, STDIN_FILENO);
 	dup2(data.fd_out, STDOUT_FILENO);
-	close(data.second_pipe);
-	close(data.fd_in);
-	close(data.fd_out);
+	//close(data.fd_in);
+	//close(data.fd_out);
+	close_fds(data.fd);
 	if (data.exec_command)
 		execve(data.exec_command, data.args, NULL);
 	free(data.exec_command);

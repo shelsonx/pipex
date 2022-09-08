@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/06 15:53:35 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:16:26 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_data
 {
+	int		**fd;
 	int		fd_in;
 	int		fd_out;
 	int		infile;
@@ -37,8 +38,10 @@ typedef struct s_data
 typedef struct s_children_data
 {
 	t_data	first_data;
+	t_data	middle_data;
 	t_data	last_data;
 	pid_t	first_pid;
+	pid_t	middle_pid;
 	pid_t	last_pid;
 	int		**pipe_fd;
 }	t_children_data;
@@ -48,6 +51,7 @@ char	**create_command(char *str);
 char	*join_path_command(char *path, char *command);
 char	*get_exec_command(char *command, char **envp);
 void	execute_command(t_data data);
+void	close_fds(int **fds);
 
 //PATH
 char	*get_env_path(char **envp);
@@ -60,9 +64,10 @@ pid_t	create_child_process(void (*func)(t_data), t_data data);
 //INIT_DATA
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
 t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd);
+t_data	get_data_middle_cmd(char **argv, char **envp, int **fd);
 
 //FINISH DATA
-void	finish_data(t_data first_data, t_data last_data, int *fd);
+void	finish_data(t_data first_data, t_data last_data, int **fd);
 
 //PIPEX
 int		pipex(int argc, char **argv, char **envp);
