@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 13:16:26 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:19:24 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd);
 t_data	get_data_middle_cmd(char **argv, char **envp, int **fd);
 
 //FINISH DATA
-void	finish_data(t_data first_data, t_data last_data, int **fd);
+void	finish_data(t_data first_data, t_data last_data, int **fds);
 
 //PIPEX
 int		pipex(int argc, char **argv, char **envp);
@@ -87,7 +87,7 @@ void	parser_command(char **command);
 
 //VALIDATE FDs FILES
 void	validate_fd_files(t_data first_data, t_data last_data,
-			char **argv, int *pipe_fd);
+			char **argv, int **pipe_fd);
 
 //VALIDATE
 void	validate(

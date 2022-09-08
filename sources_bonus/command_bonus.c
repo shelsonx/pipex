@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 13:06:47 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:22:27 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,6 @@ char	*get_exec_command(char *command, char **envp)
 	}
 	ft_free_tab(paths);
 	return (NULL);
-}
-
-void	close_fds(int **fds)
-{
-	int	i;
-
-	i = 0;
-	while (fds[i])
-	{
-		close(fds[i][0]);
-		close(fds[i][1]);
-		i++;
-	}
 }
 
 void	execute_command(t_data data)

@@ -6,14 +6,14 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 03:48:45 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/05 20:04:53 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:17:09 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
 void	validate_fd_files(
-	t_data first_data, t_data last_data, char **argv, int *pipe_fd)
+	t_data first_data, t_data last_data, char **argv, int **pipe_fd)
 {
 	if (first_data.infile < 0)
 	{
