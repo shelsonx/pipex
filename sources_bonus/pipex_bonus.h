@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 14:19:24 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:42:29 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_children_data
 	pid_t	middle_pid;
 	pid_t	last_pid;
 	int		**pipe_fd;
+	int		total_commands;
 }	t_children_data;
 
 //COMMAND

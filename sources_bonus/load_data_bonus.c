@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:17:55 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 13:04:48 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:12:00 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ void	load_data(
 	children_data->first_data.exec_command = get_exec_command
 		(children_data->first_data.args[0], envp);
 
-	children_data->middle_data = get_data_middle_cmd
-		(argv, envp, children_data->pipe_fd);
-	children_data->middle_data.exec_command = get_exec_command
-		(children_data->middle_data.args[0], envp);
+	if (children_data->total_commands > 2)
+	{
+		children_data->middle_data = get_data_middle_cmd
+			(argv, envp, children_data->pipe_fd);
+		children_data->middle_data.exec_command = get_exec_command
+			(children_data->middle_data.args[0], envp);
+	}
 	
 	children_data->last_data = get_data_last_cmd
 		(argc, argv, envp, children_data->pipe_fd);

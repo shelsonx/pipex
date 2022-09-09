@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 13:06:56 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:25:43 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 		free(msg);
 	}
 	data.fd = fd;
-	data.fd_in = fd[1][0];
+	if (argc == 5)
+		data.fd_in = fd[0][0];
+	else
+		data.fd_in = fd[1][0];
 	data.fd_out = data.outfile;
 	data.args = create_command(argv[argc -2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
