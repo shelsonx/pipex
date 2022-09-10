@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 16:08:03 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:29:08 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ pid_t	create_child_process(void (*func)(t_data), t_data data);
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
 t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd);
 t_data	get_data_middle_cmd(char **argv, char **envp, int **fd, int i);
+void	create_pipes(t_children_data *children_data);
 
 //FINISH DATA
 void	finish_data(t_data first_data, t_data last_data, int **fds);

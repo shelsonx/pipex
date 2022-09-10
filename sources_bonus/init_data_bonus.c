@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 19:46:57 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:28:44 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,22 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 	data.args = create_command(argv[argc -2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
+}
+
+void	create_pipes(t_children_data *children_data)
+{
+	int	i;
+
+	children_data->pipe_fd = ft_calloc(sizeof(int **), children_data->total_commands);
+	i = 0;
+	while (i < (children_data->total_commands - 1))
+	{
+		children_data->pipe_fd[i] = ft_calloc(sizeof(int *), 2);
+		if (pipe(children_data->pipe_fd[i]) < 0)
+		{
+			perror("pipex");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
 }
