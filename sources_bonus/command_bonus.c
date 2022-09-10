@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 19:17:43 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:45:56 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	execute_command(t_data data)
 {
 	dup2(data.fd_in, STDIN_FILENO);
 	dup2(data.fd_out, STDOUT_FILENO);
-	//close(data.fd_in);
-	//close(data.fd_out);
 	close_fds(data.fd);
 	if (data.exec_command)
 		execve(data.exec_command, data.args, NULL);

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 19:15:26 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:46:57 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@ t_data	get_data_middle_cmd(char **argv, char **envp, int **fd, int i)
 	data.args = create_command(argv[i+2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
-	/* 
-		i = 1;
-		fd[0][0]
-		fd[1][1]
-
-		i = 2
-		fd[1][0]
-		fd[2][1]
-	 */
 }
 
 t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)

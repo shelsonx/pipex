@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:17:55 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 15:17:36 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:47:26 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,10 @@
 void	load_data(
 	int argc, char **argv, char **envp, t_children_data *children_data)
 {
-	//int	i;
-
 	children_data->first_data = get_data_first_cmd
 		(argv, envp, children_data->pipe_fd);
 	children_data->first_data.exec_command = get_exec_command
 		(children_data->first_data.args[0], envp);
-	/* if (children_data->total_commands > 2)
-	{
-		i = 1;
-		while (i <= (children_data->total_commands - 2))
-		{
-			ft_printf("total commands=%d\n", children_data->total_commands);
-			children_data->middle_data = get_data_middle_cmd
-				(argv, envp, children_data->pipe_fd, i);
-			children_data->middle_data.exec_command = get_exec_command
-				(children_data->middle_data.args[0], envp);
-			i++;
-		}
-	} */
 	children_data->last_data = get_data_last_cmd
 		(argc, argv, envp, children_data->pipe_fd);
 	children_data->last_data.exec_command = get_exec_command
