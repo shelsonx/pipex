@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/09 22:25:43 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:15:26 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,24 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 	return (data);
 }
 
-t_data	get_data_middle_cmd(char **argv, char **envp, int **fd)
+t_data	get_data_middle_cmd(char **argv, char **envp, int **fd, int i)
 {
 	t_data	data;
 	data.fd = fd;
-	data.fd_in = fd[0][0];
-	data.fd_out = fd[1][1];
-	data.args = create_command(argv[3]);
+	data.fd_in = fd[i-1][0];
+	data.fd_out = fd[i][1];
+	data.args = create_command(argv[i+2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
+	/* 
+		i = 1;
+		fd[0][0]
+		fd[1][1]
+
+		i = 2
+		fd[1][0]
+		fd[2][1]
+	 */
 }
 
 t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
@@ -56,10 +65,7 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 		free(msg);
 	}
 	data.fd = fd;
-	if (argc == 5)
-		data.fd_in = fd[0][0];
-	else
-		data.fd_in = fd[1][0];
+	data.fd_in = fd[argc-5][0];
 	data.fd_out = data.outfile;
 	data.args = create_command(argv[argc -2]);
 	data.exec_command = get_exec_command(data.args[0], envp);

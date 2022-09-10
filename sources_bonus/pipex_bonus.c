@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:17:20 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 16:42:19 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:23:25 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	create_pipes(t_children_data *children_data)
 {
 	int	i;
 
-	children_data->pipe_fd = (int **) malloc(sizeof(int *) * (children_data->total_commands - 1));
+	children_data->pipe_fd = (int **) malloc(sizeof(int *) * (children_data->total_commands));
 	i = 0;
 	while (i < (children_data->total_commands - 1))
 	{
@@ -39,6 +39,6 @@ int	pipex(int argc, char **argv, char **envp)
 	create_pipes(&children_data);
 	load_data(argc, argv, envp, &children_data);
 	validate(argc, argv, envp, children_data);
-	exec_children_process(children_data);
+	exec_children_process(children_data, argv, envp);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/08 16:42:29 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:08:03 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ pid_t	create_child_process(void (*func)(t_data), t_data data);
 //INIT_DATA
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
 t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd);
-t_data	get_data_middle_cmd(char **argv, char **envp, int **fd);
+t_data	get_data_middle_cmd(char **argv, char **envp, int **fd, int i);
 
 //FINISH DATA
 void	finish_data(t_data first_data, t_data last_data, int **fds);
@@ -95,7 +95,7 @@ void	validate(
 			int argc, char **argv, char **envp, t_children_data children_data);
 
 //EXECUTE CHILDREN PROCCESS
-void	exec_children_process(t_children_data children_data);
+void	exec_children_process(t_children_data children_data, char **argv, char **envp);
 
 //LOAD DATA
 void	load_data(
