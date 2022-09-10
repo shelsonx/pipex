@@ -6,12 +6,12 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 20:29:08 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:22:08 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -96,7 +96,8 @@ void	validate(
 			int argc, char **argv, char **envp, t_children_data children_data);
 
 //EXECUTE CHILDREN PROCCESS
-void	exec_children_process(t_children_data children_data, char **argv, char **envp);
+void	exec_children_process(
+			t_children_data children_data, char **argv, char **envp);
 
 //LOAD DATA
 void	load_data(

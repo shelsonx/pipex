@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 20:28:44 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:11:30 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 t_data	get_data_middle_cmd(char **argv, char **envp, int **fd, int i)
 {
 	t_data	data;
+
 	data.fd = fd;
-	data.fd_in = fd[i-1][0];
+	data.fd_in = fd[i -1][0];
 	data.fd_out = fd[i][1];
-	data.args = create_command(argv[i+2]);
+	data.args = create_command(argv[i +2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
 }
@@ -56,7 +57,7 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 		free(msg);
 	}
 	data.fd = fd;
-	data.fd_in = fd[argc-5][0];
+	data.fd_in = fd[argc -5][0];
 	data.fd_out = data.outfile;
 	data.args = create_command(argv[argc -2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
@@ -67,7 +68,8 @@ void	create_pipes(t_children_data *children_data)
 {
 	int	i;
 
-	children_data->pipe_fd = ft_calloc(sizeof(int **), children_data->total_commands);
+	children_data->pipe_fd = ft_calloc
+		(sizeof(int **), children_data->total_commands);
 	i = 0;
 	while (i < (children_data->total_commands - 1))
 	{
