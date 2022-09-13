@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/13 04:27:30 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:41:42 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 	t_data	data;
 	char	*msg;
 
-	data.infile = open(argv[1], O_RDONLY);
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+	{
+		here_doc(fd, argv[2]);
+		data.infile = fd[0][0]; 
+	}
+	else
+		data.infile = open(argv[1], O_RDONLY);
 	if (data.infile < 0)
 	{
 		msg = ft_strjoin("pipex: ", argv[1]);
