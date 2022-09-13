@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 21:22:08 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:28:34 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_data
 	int		fd_out;
 	int		infile;
 	int		outfile;
-	int		second_pipe;
 	char	*exec_command;
 	char	**args;
 }	t_data;
@@ -45,14 +44,16 @@ typedef struct s_children_data
 	pid_t	last_pid;
 	int		**pipe_fd;
 	int		total_commands;
+	int		exit_status;
 }	t_children_data;
 
 //COMMAND
 char	**create_command(char *str);
 char	*join_path_command(char *path, char *command);
 char	*get_exec_command(char *command, char **envp);
-void	execute_command(t_data data);
+void	execute_command(t_data data, t_children_data s_children_data);
 void	close_fds(int **fds);
+void	ft_free_fds(int **fds);
 
 //PATH
 char	*get_env_path(char **envp);
@@ -60,7 +61,7 @@ char	**get_paths_cmds(char *env_path);
 void	get_path(char **envp);
 
 //CHILD PROCESSS
-pid_t	create_child_process(void (*func)(t_data), t_data data);
+pid_t	create_child_process(void (*func)(t_data, t_children_data), t_data data, t_children_data children_data);
 
 //INIT_DATA
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
@@ -75,10 +76,11 @@ void	finish_data(t_data first_data, t_data last_data, int **fds);
 int		pipex(int argc, char **argv, char **envp);
 
 //VALIDATE COMMAND
-void	validate_command(int argc, char **argv, char **envp,
-			t_children_data children_data);
-char	*valid_first_command(char **argv, char **envp);
-char	*valid_last_command(int argc, char **argv, char **envp);
+void	validate_command(char **argv, char **envp,
+			t_children_data children_data, int i);
+char	*valid_first_command(char **argv, char **envp, int i);
+char	*valid_last_command(char **argv, char **envp, int i);
+void	error_command_msg(char **command);
 
 //VALIDATE ARGS
 void	validate_empty_args(char *command);
@@ -93,11 +95,11 @@ void	validate_fd_files(t_data first_data, t_data last_data,
 
 //VALIDATE
 void	validate(
-			int argc, char **argv, char **envp, t_children_data children_data);
+		char **argv, t_children_data children_data, int i);
 
 //EXECUTE CHILDREN PROCCESS
-void	exec_children_process(
-			t_children_data children_data, char **argv, char **envp);
+int	exec_children_process(
+	t_children_data children_data, char **argv, char **envp);
 
 //LOAD DATA
 void	load_data(

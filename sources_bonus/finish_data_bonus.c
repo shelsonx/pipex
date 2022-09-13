@@ -6,13 +6,13 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:23:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 21:19:23 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:57:08 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-static void	ft_free_fds(int **fds)
+void	ft_free_fds(int **fds)
 {
 	int	i;
 

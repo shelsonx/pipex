@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:27:11 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 13:49:26 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:38:57 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ int	main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	else
-		pipex(argc, argv, envp);
-	return (0);
+		return (pipex(argc, argv, envp));
 }

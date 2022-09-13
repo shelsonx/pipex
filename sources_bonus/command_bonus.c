@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/10 19:45:56 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/13 05:22:51 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,26 @@ char	*get_exec_command(char *command, char **envp)
 	return (NULL);
 }
 
-void	execute_command(t_data data)
+void	execute_command(t_data data, t_children_data children_data)
 {
+	
 	dup2(data.fd_in, STDIN_FILENO);
 	dup2(data.fd_out, STDOUT_FILENO);
 	close_fds(data.fd);
 	if (data.exec_command)
+	{
+		children_data.total_commands = children_data.total_commands;
 		execve(data.exec_command, data.args, NULL);
-	free(data.exec_command);
+		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		error_command_msg(data.args);
+		close(children_data.first_data.infile);
+		close(children_data.last_data.outfile);
+		ft_free_fds(children_data.pipe_fd);
+		ft_free_tab(children_data.first_data.args);
+		ft_free_tab(children_data.last_data.args);
+		exit(COMMAND_NOT_FOUND);
+	}
 }
