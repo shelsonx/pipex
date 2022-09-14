@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 13:23:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/13 01:57:08 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/14 02:22:04 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@ void	ft_free_fds(int **fds)
 	int	i;
 
 	i = 0;
+	if (!fds)
+		return ;
 	while (fds[i])
 	{
-		free(fds[i]);
+		if (fds[i])
+		{
+			free(fds[i]);
+			fds[i] = NULL;
+		}
 		i++;
 	}
 	free(fds);

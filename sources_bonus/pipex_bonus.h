@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/13 01:28:34 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:14:18 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define COMMAND_NOT_FOUND 127
 # define STDERR 2
+# define TRUE 1
 
 typedef struct s_data
 {
@@ -44,7 +45,6 @@ typedef struct s_children_data
 	pid_t	last_pid;
 	int		**pipe_fd;
 	int		total_commands;
-	int		exit_status;
 }	t_children_data;
 
 //COMMAND
@@ -61,7 +61,8 @@ char	**get_paths_cmds(char *env_path);
 void	get_path(char **envp);
 
 //CHILD PROCESSS
-pid_t	create_child_process(void (*func)(t_data, t_children_data), t_data data, t_children_data children_data);
+pid_t	create_child_process(void (*func)(t_data, t_children_data),
+			t_data data, t_children_data children_data);
 
 //INIT_DATA
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
@@ -77,7 +78,8 @@ int		pipex(int argc, char **argv, char **envp);
 
 //VALIDATE COMMAND
 void	validate_command(char **argv, char **envp,
-			t_children_data children_data, int i);
+			t_children_data children_data);
+
 char	*valid_first_command(char **argv, char **envp, int i);
 char	*valid_last_command(char **argv, char **envp, int i);
 void	error_command_msg(char **command);
@@ -95,14 +97,17 @@ void	validate_fd_files(t_data first_data, t_data last_data,
 
 //VALIDATE
 void	validate(
-		char **argv, t_children_data children_data, int i);
+			char **argv, t_children_data children_data, int i);
 
 //EXECUTE CHILDREN PROCCESS
-int	exec_children_process(
-	t_children_data children_data, char **argv, char **envp);
+void	exec_children_process(
+			t_children_data children_data, char **argv, char **envp);
 
 //LOAD DATA
 void	load_data(
 			int argc, char **argv, char **envp, t_children_data *children_data);
+
+//HERE_DOC
+void	here_doc(int **fd, char *limiter);
 
 #endif

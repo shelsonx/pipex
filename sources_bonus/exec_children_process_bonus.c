@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:11:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/13 04:51:46 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:03:02 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	exec_middles_commands(
 	}
 }
 
-int	exec_children_process(
+void	exec_children_process(
 	t_children_data children_data, char **argv, char **envp)
 {
-	int	status;
-	
+	int		status;
+
 	status = 0;
 	children_data.first_pid = create_child_process
 		(execute_command, children_data.first_data, children_data);
@@ -51,7 +51,4 @@ int	exec_children_process(
 	if (children_data.total_commands > 2)
 		waitpid(children_data.middle_pid, &status, 0);
 	waitpid(children_data.last_pid, &status, 0);
-	if (status != EXIT_SUCCESS)
-		return (COMMAND_NOT_FOUND);
-	return (EXIT_SUCCESS);
 }
