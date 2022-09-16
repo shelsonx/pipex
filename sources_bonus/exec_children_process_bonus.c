@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:11:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/14 16:03:02 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:37:21 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	exec_middles_commands(
 				(argv, envp, children_data->pipe_fd, i);
 			children_data->middle_data.exec_command = get_exec_command
 				(children_data->middle_data.args[0], envp);
+			if (!children_data->middle_data.exec_command)
+			{
+				ft_free_tab(children_data->middle_data.args);
+				finish_data(children_data->first_data, children_data->last_data, children_data->pipe_fd);
+				exit(COMMAND_NOT_FOUND);
+			}
 			children_data->middle_pid = create_child_process
 				(execute_command, children_data->middle_data, *children_data);
 			ft_free_tab(children_data->middle_data.args);
@@ -42,6 +48,12 @@ void	exec_children_process(
 	status = 0;
 	children_data.first_pid = create_child_process
 		(execute_command, children_data.first_data, children_data);
+	if (!children_data.first_data.exec_command)
+	{
+		finish_data(children_data.first_data, children_data.last_data,
+		children_data.pipe_fd);
+		exit(COMMAND_NOT_FOUND);
+	}
 	exec_middles_commands(&children_data, argv, envp);
 	children_data.last_pid = create_child_process
 		(execute_command, children_data.last_data, children_data);

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 23:05:05 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/14 18:36:16 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:25:38 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,5 @@ void	execute_command(t_data data, t_children_data children_data)
 	{
 		children_data.total_commands = children_data.total_commands;
 		execve(data.exec_command, data.args, NULL);
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		exit(COMMAND_NOT_FOUND);
 	}
 }
