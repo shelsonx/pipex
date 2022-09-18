@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 14:30:32 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:42:25 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 {
 	t_data	data;
 	char	*msg;
-
-	data.outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+		data.outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else
+		data.outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (data.outfile < 0)
 	{
 		msg = ft_strjoin("pipex: ", argv[argc -1]);
@@ -86,15 +89,10 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 	}
 	data.fd = fd;
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
-	{
 		data.fd_in = fd[argc -6][0];
-		data.args = create_command(argv[argc -3]);
-	}
 	else
-	{
 		data.fd_in = fd[argc -5][0];
-		data.args = create_command(argv[argc -2]);
-	}
+	data.args = create_command(argv[argc -2]);
 	data.fd_out = data.outfile;
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
