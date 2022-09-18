@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 19:08:26 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:19:44 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_range
 char	**create_command(char *str);
 char	*join_path_command(char *path, char *command);
 char	*get_exec_command(char *command, char **envp);
-void	execute_command(t_data data, t_children_data s_children_data);
+void	execute_command(t_data data);
 void	close_fds(int **fds);
 void	ft_free_fds(int **fds);
 
@@ -67,8 +67,7 @@ char	**get_paths_cmds(char *env_path);
 void	get_path(char **envp);
 
 //CHILD PROCESSS
-pid_t	create_child_process(void (*func)(t_data, t_children_data),
-			t_data data, t_children_data children_data);
+pid_t	create_child_process(void (*func)(t_data), t_data data);
 
 //INIT_DATA
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd);
