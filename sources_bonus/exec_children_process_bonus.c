@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:11:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 15:35:17 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:55:04 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	exec_middles_commands(
 			if (!children_data->middle_data.exec_command)
 			{
 				ft_free_tab(children_data->middle_data.args);
-				finish_data(children_data->first_data, children_data->last_data, children_data->pipe_fd);
+				finish_data(children_data->first_data,
+					children_data->last_data, children_data->pipe_fd);
 				exit(COMMAND_NOT_FOUND);
 			}
 			children_data->middle_pid = create_child_process
@@ -51,7 +52,7 @@ void	exec_children_process(
 	if (!children_data.first_data.exec_command)
 	{
 		finish_data(children_data.first_data, children_data.last_data,
-		children_data.pipe_fd);
+			children_data.pipe_fd);
 		exit(COMMAND_NOT_FOUND);
 	}
 	exec_middles_commands(&children_data, argv, envp);

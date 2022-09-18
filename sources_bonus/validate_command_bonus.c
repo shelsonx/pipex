@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 00:08:11 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:46:51 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,20 @@ char	*valid_last_command(char **argv, char **envp, int i)
 void	validate_command(
 	char **argv, char **envp, t_children_data children_data)
 {
-	int		i;
-	int		additional;
+	t_range	range;
 	char	**command;
 	char	*exec_command;
-	
-	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+
+	range = get_valid_cmds_range(children_data, argv);
+	while (argv[range.start] && range.start <= (range.end))
 	{
-		i = 3;
-		additional = 2;
-	}
-	else
-	{
-		i = 2;
-		additional = 1;
-	}
-	while (argv[i] && i <= (children_data.total_commands + additional))
-	{
-		valid_first_command(argv, envp, i);
-		command = ft_split(argv[i], ' ');
-		exec_command = valid_first_command(argv, envp, i);
+		valid_first_command(argv, envp, range.start);
+		command = ft_split(argv[range.start], ' ');
+		exec_command = valid_first_command(argv, envp, range.start);
 		if (!exec_command)
 			error_command_msg(command);
 		free(exec_command);
 		ft_free_tab(command);
-		i++;
+		range.start++;
 	}
 }

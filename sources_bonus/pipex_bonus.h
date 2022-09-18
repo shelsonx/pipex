@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 12:50:23 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:08:26 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_children_data
 	int		total_commands;
 }	t_children_data;
 
+typedef struct s_range
+{
+	int	start;
+	int	end;
+}	t_range;
+
 //COMMAND
 char	**create_command(char *str);
 char	*join_path_command(char *path, char *command);
@@ -84,6 +90,8 @@ char	*valid_first_command(char **argv, char **envp, int i);
 char	*valid_last_command(char **argv, char **envp, int i);
 void	error_command_msg(char **command);
 
+t_range	get_valid_cmds_range(t_children_data children_data, char **argv);
+
 //VALIDATE ARGS
 void	validate_empty_args(char *command);
 
@@ -97,7 +105,7 @@ void	validate_fd_files(t_data first_data, t_data last_data,
 
 //VALIDATE
 void	validate(
-			char **argv, t_children_data children_data, int i);
+			char **argv, t_children_data children_data);
 
 //EXECUTE CHILDREN PROCCESS
 void	exec_children_process(
@@ -109,5 +117,6 @@ void	load_data(
 
 //HERE_DOC
 void	here_doc(int **fd, char *limiter);
+void	set_infile_here_doc(t_data *data, char **argv);
 
 #endif

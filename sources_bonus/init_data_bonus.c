@@ -6,16 +6,14 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 17:11:06 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:45:55 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-static void exit_bad_infile(int **here_doc_fd, int **fd)
+static void	exit_bad_infile(int **fd)
 {
-	close_fds(here_doc_fd);
-	ft_free_fds(here_doc_fd);
 	close_fds(fd);
 	ft_free_fds(fd);
 	exit(EXIT_FAILURE);
@@ -25,23 +23,9 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 {
 	t_data	data;
 	char	*msg;
-	int		**here_doc_fd;
-
-	here_doc_fd = ft_calloc(sizeof(int **), 2);
-	here_doc_fd[0] = ft_calloc(sizeof(int *), 2);
-
-	if (pipe(here_doc_fd[0]) < 0)
-	{
-		perror("pipex");
-		exit(EXIT_FAILURE);
-	}
 
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
-	{
-		here_doc(here_doc_fd, argv[2]);
-		data.infile = here_doc_fd[0][0];
-		ft_free_fds(here_doc_fd);
-	}
+		set_infile_here_doc(&data, argv);
 	else
 		data.infile = open(argv[1], O_RDONLY);
 	if (data.infile < 0)
@@ -49,14 +33,14 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 		msg = ft_strjoin("pipex: ", argv[1]);
 		perror(msg);
 		free(msg);
-		exit_bad_infile(here_doc_fd, fd);
+		exit_bad_infile(fd);
 	}
 	data.fd = fd;
 	data.fd_in = data.infile;
 	data.fd_out = fd[0][1];
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 		data.args = create_command(argv[3]);
-	else 
+	else
 		data.args = create_command(argv[2]);
 	data.exec_command = get_exec_command(data.args[0], envp);
 	return (data);
@@ -81,7 +65,7 @@ t_data	get_data_last_cmd(int argc, char **argv, char **envp, int **fd)
 {
 	t_data	data;
 	char	*msg;
-	
+
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 		data.outfile = open(argv[argc -1], O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else
