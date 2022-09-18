@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:49:27 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/14 17:09:19 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:08:11 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,21 @@ void	validate_command(
 	char **argv, char **envp, t_children_data children_data)
 {
 	int		i;
+	int		additional;
 	char	**command;
 	char	*exec_command;
-
-	i = 2;
-	while (argv[i] && i <= (children_data.total_commands + 1))
+	
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+	{
+		i = 3;
+		additional = 2;
+	}
+	else
+	{
+		i = 2;
+		additional = 1;
+	}
+	while (argv[i] && i <= (children_data.total_commands + additional))
 	{
 		valid_first_command(argv, envp, i);
 		command = ft_split(argv[i], ' ');

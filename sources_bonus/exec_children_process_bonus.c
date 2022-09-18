@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:11:10 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/16 17:37:21 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 14:33:06 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exec_middles_commands(
 	if (children_data->total_commands > 2)
 	{
 		i = 1;
-		while (i <= (children_data->total_commands - 2))
+		while (i <= (children_data->total_commands - 1))
 		{
 			children_data->middle_data = get_data_middle_cmd
 				(argv, envp, children_data->pipe_fd, i);

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:51:38 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/14 17:08:29 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:21:14 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,23 @@ static int	is_limiter(char *line, char *limiter)
 		&& (ft_strlen(line) -1) == ft_strlen(limiter));
 }
 
-static void	exit_read(int **fd, char *line)
-{
-	free(line);
-	close(1);
-	close(2);
-	close(fd[0][1]);
-}
-
 void	here_doc(int **fd, char *limiter)
 {
 	char	*line;
+	int		fd2;
 
+	fd2 = dup(0);
 	while (TRUE)
 	{
 		ft_printf("here_doc> ");
-		line = ft_get_next_line(STDIN_FILENO);
+		line = ft_get_next_line(fd2);
 		if (is_limiter(line, limiter))
 		{
-			exit_read(fd, line);
+			free(line);
+			close(fd2);
+			close(1);
+			close(fd[0][1]);
+			line = ft_get_next_line(fd2);
 			break ;
 		}
 		write(fd[0][1], line, ft_strlen(line));
