@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 19:19:44 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/19 04:47:44 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	error_command_msg(char **command);
 t_range	get_valid_cmds_range(t_children_data children_data, char **argv);
 
 //VALIDATE ARGS
-void	validate_empty_args(char *command);
+void	validate_empty_args(char *command, t_children_data *children_data);
 
 //PARSER
 void	parser_arg(char *arg);

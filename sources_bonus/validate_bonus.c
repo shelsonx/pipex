@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 05:22:47 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 19:10:22 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/19 04:50:55 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@ void	validate(
 	int	i;
 
 	i = 2;
-	validate_empty_args(argv[i]);
-	validate_empty_args(argv[i +1]);
-	validate_fd_files (children_data.first_data, children_data.last_data,
-		argv, children_data.pipe_fd);
+	while (i <= children_data.total_commands + 2)
+	{
+		fprintf(stderr, "argv[%d]= %s\n", i, argv[i]);
+		fprintf(stderr, "argv[%d]= %s\n", i + 1, argv[i + 1]);
+		validate_empty_args(argv[i], &children_data);
+		validate_empty_args(argv[i +1], &children_data);
+		validate_fd_files (children_data.first_data, children_data.last_data,
+			argv, children_data.pipe_fd);
+		i++;
+	}
 }
 
 t_range	get_valid_cmds_range(t_children_data children_data, char **argv)
