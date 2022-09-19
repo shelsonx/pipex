@@ -6,17 +6,26 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:46:35 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/18 17:45:55 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/19 06:19:00 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-static void	exit_bad_infile(int **fd)
+static void	exit_bad_infile(int **fd, char **argv)
 {
-	close_fds(fd);
-	ft_free_fds(fd);
-	exit(EXIT_FAILURE);
+	if (!access(argv[1], F_OK))
+	{
+		close_fds(fd);
+		ft_free_fds(fd);
+		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		close_fds(fd);
+		ft_free_fds(fd);
+		exit(EXIT_FAILURE);
+	}
 }
 
 t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
@@ -33,7 +42,7 @@ t_data	get_data_first_cmd(char **argv, char **envp, int **fd)
 		msg = ft_strjoin("pipex: ", argv[1]);
 		perror(msg);
 		free(msg);
-		exit_bad_infile(fd);
+		exit_bad_infile(fd, argv);
 	}
 	data.fd = fd;
 	data.fd_in = data.infile;

@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 07:35:49 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/19 04:47:44 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/19 06:18:48 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ void	parser_arg(char *arg);
 void	parser_command(char **command);
 
 //VALIDATE FDs FILES
-void	validate_fd_files(t_data first_data, t_data last_data,
-			char **argv, int **pipe_fd);
+void	validate_fd_files(t_children_data *children_data, char **argv);
 
 //VALIDATE
 void	validate(

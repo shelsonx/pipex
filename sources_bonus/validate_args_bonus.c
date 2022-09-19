@@ -6,7 +6,7 @@
 /*   By: sjhony-x <sjhony-x@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 12:35:57 by sjhony-x          #+#    #+#             */
-/*   Updated: 2022/09/19 04:56:49 by sjhony-x         ###   ########.fr       */
+/*   Updated: 2022/09/19 06:18:35 by sjhony-x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	validate_empty_args(char *arg, t_children_data *children_data)
 	{
 		close_fds(children_data->pipe_fd);
 		ft_free_fds(children_data->pipe_fd);
-		ft_printf("pipex: %s: command not found\n", arg);
 		exit(EXIT_FAILURE);
 	}
 }
