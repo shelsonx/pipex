@@ -29,7 +29,6 @@ RM 					= rm -f
 CC					= cc
 
 CFLAGS 				= -Wall -Wextra -Werror -g
-MINILIBX_FLAGS		= -L. -lXext -L. -lX11
 
 NAME				= pipex
 NAME_BONUS			= pipex_bonus
