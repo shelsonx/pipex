@@ -3,7 +3,7 @@
 
 <p>
 
-Projeto pipex tem como objetivo simular o '|' do shell, que basicamente conecta a saída de um programa na entrada de outro. Com isso 
+Projeto pipex tem como objetivo simular o '|' do shell, que basicamente conectar a saída de um programa na entrada de outro. Com isso 
 passamos por vários conhecimentos bem interessantes, como executar programas dentro de outros programas, processos pai e processos filhos, redirecionar
 entrada e saída padrão, lendo de um arquivo e salvando a saída final em outro arquivo.
 
