@@ -27,16 +27,22 @@ and output, reading from a file, saving the final output in another file.
 ## Getting started
 #Steps
 
-<ol>
-<li>Clone Respository</li>
-    <strong>git clone https://github.com/shelsonx/pipex.git && cd pipex</strong>
-<li>run make bonus to build with bonus</li>
-    <strong>make bonus</strong>
-<li>run program</li>
-    <strong>./pipex_bonus colors "sort" "uniq -c" "sort -r" "head -3" favcolors</strong>
-<li>clean objects</li>
-    <strong>make clean</strong>
-</ol>
+:memo: Clone Respository
+`````````````````````````
+$ git clone https://github.com/shelsonx/pipex.git && cd pipex
+`````````````````````````
+:construction: run make bonus to build with bonus
+`````````````````````````
+$ make bonus
+`````````````````````````
+:computer: run program
+`````````````````````````
+./pipex_bonus colors "sort" "uniq -c" "sort -r" "head -3" favcolors
+`````````````````````````
+:broom: clean objects
+`````````````````````````
+$ make clean
+`````````````````````````
 
 More examples view to gif...
     
