@@ -29,7 +29,7 @@ and output, reading from a file, saving the final output in another file.
 
 <ol>
 <li>Clone Respository</li>
-    <strong>git clone https://github.com/shelsonx/pipex && cd pipex</strong>
+    <strong>git clone https://github.com/shelsonx/pipex.git && cd pipex</strong>
 <li>run make bonus to build with bonus</li>
     <strong>make bonus</strong>
 <li>run program</li>
