@@ -37,7 +37,7 @@ $ make bonus
 `````````````````````````
 :computer: run program
 `````````````````````````
-./pipex_bonus colors "sort" "uniq -c" "sort -r" "head -3" favcolors
+$ ./pipex_bonus colors "sort" "uniq -c" "sort -r" "head -3" favcolors
 `````````````````````````
 :broom: clean objects
 `````````````````````````
